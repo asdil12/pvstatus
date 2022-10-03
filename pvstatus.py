@@ -52,13 +52,13 @@ print(sb)
 bat = min(max(0, sb['battery_level']), 99)
 cd = "CHR" if sb['battery_is_charging'] else '   '
 cd = "DIS" if sb['battery_is_discharging'] else cd
-cdr = "@% 5iW" % abs(sb['battery_charging']) if sb['battery_is_charging'] or sb['battery_is_discharging'] else '      '
+cdr = "@% 5iW" % abs(sb['battery_charging']) if sb['battery_is_charging'] or sb['battery_is_discharging'] else '       '
 
 g_io = 'GO' if sb['grid_feedin'] >= 0 else 'GI'
 
 
 line1 = "WR1:% 6iW    Prod:" % p1
-line2 = "WR2:% 6iW   % 5iW" % (p2, sb['production'])
+line2 = "WR2:% 6iW  % 6iW" % (p2, sb['production'])
 line3 = "Bat:% 3i%% %s %s" % (bat, cd, cdr)
 line4 = "C:% 6iW %s:% 6iW" % (sb['consumption'], g_io, abs(sb['grid_feedin']))
 
