@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 
+import os
 import requests
 import solaredge_modbus
 import lcd_i2c
 import time
+import subprocess
 
 
 def get_wechselrichter2_power():
@@ -44,7 +46,8 @@ lcd_i2c.lcd_init()
 
 while True:
     p1 = get_wechselrichter1_power()
-    p2 = get_wechselrichter2_power()
+    #p2 = get_wechselrichter2_power()
+    p2 = int(subprocess.check_output([os.path.join(os.path.dirname(__file__), "wr2.py")]))
     sb = get_sonnenbatterie_status()
 
     #sb = {'consumption': 570, 'production': 506, 'battery_level': 35, 'battery_is_charging': True, 'battery_is_discharging': False, 'battery_charging': 283, 'grid_feedin': 71}
@@ -80,4 +83,4 @@ while True:
     lcd_i2c.lcd_string(line3, lcd_i2c.LCD_LINE_3)
     lcd_i2c.lcd_string(line4, lcd_i2c.LCD_LINE_4)
 
-    time.sleep(0.1)
+    time.sleep(0.2)
