@@ -67,7 +67,7 @@ while True:
 
     line1 = "WR1:% 6iW    Prod:" % p1
     line2 = "WR2:% 6iW  % 6iW" % (p2, sb['production'])
-    line3 = "%s:% 6iW C:% 6iW" % (g_io, abs(sb['grid_feedin'], sb['consumption']))
+    line3 = "%s:% 6iW C:% 6iW" % (g_io, abs(sb['grid_feedin']), sb['consumption'])
     line4 = "Bat:% 3i%% %s %s" % (bat, cd, cdr)
 
 
