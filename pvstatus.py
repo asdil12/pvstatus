@@ -29,9 +29,10 @@ def get_wechselrichter1_power():
 
 def get_sonnenbatterie_status():
 	s = requests.session()
-	s.get('http://sonnenbatterie.heidler-peg.lan:8080/')
-	s.post('http://sonnenbatterie.heidler-peg.lan:8080/login', data={'username': 'user', 'password': 'Sonnen2016'})
-	j = s.get('http://sonnenbatterie.heidler-peg.lan:8080/api/v1/status').json()
+	#s.get('http://sonnenbatterie.heidler-peg.lan:8080/')
+	#s.post('http://sonnenbatterie.heidler-peg.lan:8080/login', data={'username': 'user', 'password': 'Sonnen2016'})
+	#j = s.get('http://sonnenbatterie.heidler-peg.lan:8080/api/v1/status').json()
+	j = s.get('http://sonnenbatterie.heidler-peg.lan/api/v2/status').json()
 	return {
 		"consumption": j['Consumption_W'],
 		"production": j['Production_W'],
@@ -51,6 +52,7 @@ while True:
     sb = get_sonnenbatterie_status()
 
     #sb = {'consumption': 570, 'production': 506, 'battery_level': 35, 'battery_is_charging': True, 'battery_is_discharging': False, 'battery_charging': 283, 'grid_feedin': 71}
+    #sb = {'consumption': 0, 'production': p1+p2, 'battery_level': 0, 'battery_is_charging': False, 'battery_is_discharging': False, 'battery_charging': 0, 'grid_feedin': 0}
 
 
     print(f"{p1=}")
